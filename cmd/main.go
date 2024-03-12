@@ -32,12 +32,12 @@ func main() {
 	}
 
 	repo := repository.NewRepository(db)
-	file, err := os.OpenFile("logfile.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	//file, err := os.OpenFile("logfile.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
 	if err != nil {
 		log.Fatal("Error opening log file: ", err)
 	}
-	logger := log.New(file, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
+	logger := log.New(os.Stdout, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
 	// info := log.New(file, "", log.Ldate|log.Ltime|log.Lshortfile)
 
 	service := service.NewService(repo, logger)
